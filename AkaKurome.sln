@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Akame", "Akame\Akame.csproj", "{75A87179-4685-4EC9-AFCE-39527732F4E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83EA3A2B-83CF-4F7B-AAA9-DB48E391479F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		global.ts = global.ts
+		gulpfile.coffee = gulpfile.coffee
+		package.json = package.json
+		WebEssentials-Settings.json = WebEssentials-Settings.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kurome", "Kurome\Kurome.csproj", "{C09DBB0F-3F03-412A-8F91-3CABF54FA6C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "site-typings", "site-typings", "{CB005501-AB82-4441-AD30-9790941C79A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wurl", "wurl", "{2CF2AD5D-9B11-455E-BD43-F3B7FAF4BF43}"
+	ProjectSection(SolutionItems) = preProject
+		site-typings\wurl\wurl.d.ts = site-typings\wurl\wurl.d.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "peerjs", "peerjs", "{F600CF48-07F8-42BB-B3B6-AF552057C7E7}"
+	ProjectSection(SolutionItems) = preProject
+		site-typings\peerjs\peerjs.d.ts = site-typings\peerjs\peerjs.d.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "jcanvas", "jcanvas", "{08D1254B-D678-4839-8EF9-804126C44AC3}"
+	ProjectSection(SolutionItems) = preProject
+		site-typings\jcanvas\jcanvas.d.ts = site-typings\jcanvas\jcanvas.d.ts
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "webcrypto", "webcrypto", "{45D96E0C-B565-4249-96B4-95F52F1D7099}"
+	ProjectSection(SolutionItems) = preProject
+		site-typings\webcrypto\webcrypto.d.ts = site-typings\webcrypto\webcrypto.d.ts
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75A87179-4685-4EC9-AFCE-39527732F4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75A87179-4685-4EC9-AFCE-39527732F4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75A87179-4685-4EC9-AFCE-39527732F4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75A87179-4685-4EC9-AFCE-39527732F4E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09DBB0F-3F03-412A-8F91-3CABF54FA6C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09DBB0F-3F03-412A-8F91-3CABF54FA6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09DBB0F-3F03-412A-8F91-3CABF54FA6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09DBB0F-3F03-412A-8F91-3CABF54FA6C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB005501-AB82-4441-AD30-9790941C79A7} = {83EA3A2B-83CF-4F7B-AAA9-DB48E391479F}
+		{2CF2AD5D-9B11-455E-BD43-F3B7FAF4BF43} = {CB005501-AB82-4441-AD30-9790941C79A7}
+		{F600CF48-07F8-42BB-B3B6-AF552057C7E7} = {CB005501-AB82-4441-AD30-9790941C79A7}
+		{08D1254B-D678-4839-8EF9-804126C44AC3} = {CB005501-AB82-4441-AD30-9790941C79A7}
+		{45D96E0C-B565-4249-96B4-95F52F1D7099} = {CB005501-AB82-4441-AD30-9790941C79A7}
+	EndGlobalSection
+EndGlobal

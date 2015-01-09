@@ -1,0 +1,17 @@
+﻿{
+    "name": "Kurome",
+    "description": "P2P Web Proxy Server Helper",
+    "version": "0.1.0.0",
+    "manifest_version": 2,
+    "background": {
+        "scripts": [
+            "background/js/background.js"
+        ],
+        "persistent": true
+    },
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "http://*/*"
+    ]
+}

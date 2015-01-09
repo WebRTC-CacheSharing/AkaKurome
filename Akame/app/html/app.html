@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="/app/css/bootstrap.css" />
+    <link rel="stylesheet" href="/app/css/app.css" />
+    <script src="/app/js/app.js"></script>
+    <title>P2P Web Proxy</title>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h3>P2P Web Proxy</h3>
+            <p>Address: <span id="server-addr"></span>, Port: <span id="server-port"></span></p>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <h4>中継している通信一覧</h4>
+
+                <form role="form">
+                    <select size="20" id="sockets" class="form-control"></select>
+                </form>
+            </div>
+
+            <div class="col-xs-8">
+                <h4>通信状況</h4>
+
+                <canvas width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

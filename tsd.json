@@ -1,0 +1,39 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "peerjs/peerjs.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "underscore/underscore.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "underscore.string/underscore.string.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "js-url/js-url.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "chrome/chrome-app.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "chrome/chrome.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "http-string-parser/http-string-parser.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "text-encoding/text-encoding.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    }
+  }
+}

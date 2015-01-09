@@ -1,0 +1,33 @@
+{
+  "name": "AkaKurome",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "Pine Mizune",
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.8.0",
+    "debowerify": "^1.2.0",
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.1",
+    "gulp-cached": "^1.0.1",
+    "gulp-concat": "^2.4.3",
+    "gulp-copy": "0.0.2",
+    "gulp-jsonlint": "^1.0.1",
+    "gulp-less": "^2.0.1",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0",
+    "gulp-tsd": "0.0.4",
+    "typescriptifier": "^1.0.0"
+  },
+  "dependencies": {
+    "http-string-parser": "0.0.4",
+    "peerjs": "^0.3.14",
+    "underscore": "^1.7.0",
+    "underscore.string": "^2.4.0",
+    "wurl": "^1.1.3"
+  }
+}

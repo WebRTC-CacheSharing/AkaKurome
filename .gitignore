@@ -1,0 +1,18 @@
+# Node.js
+node_modules
+bower_components
+npm-debug.log
+
+# TypeScript
+typings
+
+# Visual Studio
+*.suo
+*.csproj.user
+
+bin
+obj
+
+# gulp
+gulpfile.js*
+gulpfile.min*
