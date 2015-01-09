@@ -1,5 +1,6 @@
 Akame & Kurome
 --------------
+[![Build Status](https://travis-ci.org/WebRTC-CacheSharing/AkaKurome.svg?branch=master)](https://travis-ci.org/WebRTC-CacheSharing/AkaKurome)
 
 WebRTC Cache Sharing System 用 Chrome 拡張機能
 
