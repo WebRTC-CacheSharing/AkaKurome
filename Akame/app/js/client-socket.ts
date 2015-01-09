@@ -1,9 +1,9 @@
 ﻿/// <reference path="../../typings.d.ts" />
 
-// Name   : HTTP クライアントのソケットを表すクラス
+// Name   : HTTP クライアントとのソケットを表すクラス
 // License: MIT License
 // Author : pine613<https://github.com/pine613>
-// Copyright (C) 2014 Pine Mizune.
+// Copyright (C) 2014-2015 Pine Mizune.
 
 import _ = require('underscore');
 import _s = require('underscore.string');
@@ -24,47 +24,49 @@ import downloader = require('./downloader');
 import httpDownloader = require('./downloader-used-http');
 import peerjsDownloader = require('./downloader-peerjs');
 
-
+/**
+ * HTTP クライアント (Chrome) との通信処理を行うソケット
+ */
 export class ClientSocket {
 
     /**
-        * サーバーへのリクエスト
-        */
+     * サーバーへのリクエスト
+     */
     private request: parser.ParseRequestResult;
 
     /**
-        * 取得する URL
-        */
+     * 取得する URL
+     */
     public targetUrl: string;
 
     /**
-        * 取得するデータのバイト数
-        */
+     * 取得するデータのバイト数
+     */
     private targetBytes: number;
 
     /**
-        * 取得するデータの Content-Type
-        */
+     * 取得するデータの Content-Type
+     */
     private contentType: string;
 
     /**
-        * HTTP クライアント
-        */
+     * HTTP クライアント
+     */
     private httpClient: client.HttpClient = new client.HttpClient();
 
     /**
-        * HTTP バッファ
-        */
+     * HTTP バッファ
+     */
     private httpBuffer: buffer.HttpBuffer;
 
     /**
-        * HTTP を用いたダウンローダー
-        */
+     * HTTP を用いたダウンローダー
+     */
     private downloaders: downloader.Downloader[] = [];
         
     /**
-        * 終了していることを表す
-        */
+     * 終了していることを表す
+     */
     private closed: boolean = false;
 
     /**
@@ -78,19 +80,19 @@ export class ClientSocket {
     private signalingSocket: peerjsSocket.PeerjsSignalingSocket;
 
     /**
-        * クライアントソケットを初期化
-        * @param server  元となる HTTP サーバー
-        * @param soketId クライアントとのソケット ID
-        */
+     * クライアントソケットを初期化
+     * @param server  元となる HTTP サーバー
+     * @param soketId クライアントとのソケット ID
+     */
     constructor(
         private server: server.HttpServer,
         public socketId: number
         ) { }
 
     /**
-        * クライアントからデータを受信した時に発生するイベントリスナ
-        * HTTP サーバークラスから呼び出される
-        */
+     * クライアントからデータを受信した時に発生するイベントリスナ
+     * HTTP サーバークラスから呼び出される
+     */
     public onReceive(socketId: number, data: ArrayBuffer): void {
             
         // リクエストを解析
@@ -122,8 +124,8 @@ export class ClientSocket {
     }
 
     /**
-        * HTTP ヘッダを送信する
-        */
+     * HTTP ヘッダを送信する
+     */
     private sendHttpHeaders(cb: (err?: string) => void): void {
         var headers = [
             'HTTP/1.1 200 OK',
@@ -137,8 +139,8 @@ export class ClientSocket {
     }
 
     /**
-        * データをダウンロードを開始する
-        */
+     * データをダウンロードを開始する
+     */
     private startDownloading(): void {
         // データサイズを取得
         this.getHeaders((err) => {
@@ -150,7 +152,7 @@ export class ClientSocket {
             }
 
             // データサイズを保存
-            console.log('dataSize = ' + _s.numberFormat(this.targetBytes) + 'bytes');
+            console.log('Start downloading: dataSize = ' + _s.numberFormat(this.targetBytes) + ' bytes');
 
             // データバッファを作成
             this.httpBuffer = new buffer.HttpBuffer(
@@ -168,16 +170,14 @@ export class ClientSocket {
 
                 this.startDownloadingByOrigin();
                 this.startDownloadingPeerjs();
-//                    this.startDownloadingOtherHostTest();
-
             });
         });
 
     }
 
     /**
-        * データサイズを取得する
-        */
+     * データサイズを取得する
+     */
     private getHeaders(cb: (err: string) => void): void {
         this.httpClient.getHeaders(this.targetUrl, (err, headers) => {
             console.log(headers);
@@ -208,8 +208,8 @@ export class ClientSocket {
     }
 
     /**
-        * オリジナルソースからのダウンロードを開始する
-        */
+     * オリジナルソースからのダウンロードを開始する
+     */
     private startDownloadingByOrigin(): void {
         var downloader = new httpDownloader.DownloaderByOrigin(
             this.targetUrl,
@@ -221,8 +221,8 @@ export class ClientSocket {
     }
 
     /**
-        * 同一パスを他のホストから読み込む (並列ダウンロードテスト)
-        */
+     * 同一パスを他のホストから読み込む (並列ダウンロードテスト)
+     */
     private startDownloadingOtherHostTest(): void {
         var newPorts = [10082, 10083, 10084];
 
@@ -262,11 +262,9 @@ export class ClientSocket {
     }
 
     /**
-        * データバッファからのコールバック関数
-        */
+     * データバッファからのコールバック関数
+     */
     private receiveDataBlockCallback(dataBlock: block.DataBlock, cb: (err: string) => void): void {
-        //console.log(dataBlock);
-
         if (dataBlock.isLast) {
             this.send(dataBlock.data, (err) => {
                 if (err) {
@@ -280,16 +278,14 @@ export class ClientSocket {
         }
         else {
             this.send(dataBlock.data, (err) => {
-                //console.log('sended');
-
                 cb(err);
             });
         }
     }
 
     /**
-        * エラー発生のため、P2P Web Proxy を無効化しリダイレクトを行う
-        */
+     * エラー発生のため、P2P Web Proxy を無効化しリダイレクトを行う
+     */
     private blockAndRedirect(loc: string): void {
         console.log('#blockAndRedirect url = ' + loc);
 
@@ -299,15 +295,15 @@ export class ClientSocket {
     }
 
     /**
-        * リダイレクトを行う
-        */
+     * リダイレクトを行う
+     */
     private redirect(location: string): void {
         this.sendSeeOther(location);
     }
 
     /**
-        * リクエストを解析
-        */
+     * リクエストを解析
+     */
     private parseRequest(data: ArrayBuffer): parser.ParseRequestResult {
         var httpRequestString = converter.Utf8Converter.ArrayBufferToString(data);
         console.log(httpRequestString);
@@ -319,8 +315,8 @@ export class ClientSocket {
     }
 
     /**
-        * ターゲットとなる URL を取得する
-        */
+     * ターゲットとなる URL を取得する
+     */
     private parseTargetUrl(originUrl: string): string {
         // サーバー側内部インターフェイスのエンドポイント以外を弾く
         if (wurl('path', originUrl) != '/') {
@@ -341,7 +337,6 @@ export class ClientSocket {
     /**
      * PeerJS の設定をパースする
      */
-    
     private parsePeerjsSettings(originUrl: string): peerjsSocket.PeerjsSettings {
         var query = wurl('?webrtc', originUrl);
 
@@ -372,8 +367,8 @@ export class ClientSocket {
     }
 
     /**
-        * メッセージのみのレスポンスを返し、通信を終了する
-        */
+     * メッセージのみのレスポンスを返し、通信を終了する
+     */
     private sendMessage(
         status: number,
         statusText: string,
@@ -393,8 +388,8 @@ export class ClientSocket {
         this.sendAndClose(this.createHttpResponse(headers, body));
     }
     /**
-        * レスポンスを送信する
-        */
+     * レスポンスを送信する
+     */
     private send(response: ArrayBuffer, cb?: (err?: string) => void): void {
         // ソケットが既に閉じられている場合
         if (this.closed) {
@@ -423,8 +418,8 @@ export class ClientSocket {
     }
 
     /**
-        * レスポンスを送信し、通信を終了する
-        */
+     * レスポンスを送信し、通信を終了する
+     */
     private sendAndClose(response: ArrayBuffer): void {
         chrome.sockets.tcp.send(this.socketId, response, info => {
             if (info.resultCode < 0) {
@@ -436,10 +431,10 @@ export class ClientSocket {
     }
 
     /**
-        * リクエストを終了する
-        * 終了時に必ず呼び出してください
-        * 何度呼び出してもエラーが発生しないように設計されています
-        */
+     * リクエストを終了する
+     * 終了時に必ず呼び出してください
+     * 何度呼び出してもエラーが発生しないように設計されています
+     */
     private close(): void {
         this.closed = true;
 
@@ -457,26 +452,24 @@ export class ClientSocket {
             this.downloaders = undefined;
         }
 
+        if (this.signalingSocket) {
+            this.signalingSocket.close();
+            this.signalingSocket = undefined;
+        }
+
         if (this.httpBuffer) {
             this.httpBuffer.clear();
             this.httpBuffer = undefined;
         }
 
-        /*
-        if (this.signalingSocket) {
-            this.signalingSocket.close();
-        }*/
-
         this.server.closeClient(this.socketId);
     }
 
     /**
-        * レスポンスを生成する
-        */
+     * レスポンスを生成する
+     */
     private createHttpResponse(headers: string[], body: string): ArrayBuffer {
         var httpResponseString = headers.join('\r\n') + '\r\n\r\n' + body;
-//        console.log(httpResponseString);
-
         var httpResponse = converter.Utf8Converter.StringToArrayBuffer(httpResponseString);
 
         return httpResponse;
@@ -502,10 +495,10 @@ export class ClientSocket {
     }
 
     /**
-        * メッセージのみを含む HTML を生成する (HTML5)
-        * 
-        * @param message メッセージ
-        */
+     * メッセージのみを含む HTML を生成する (HTML5)
+     * 
+     * @param message メッセージ
+     */
     private createMessageHtml(message: string): string {
         var html = '';
 
