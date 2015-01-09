@@ -110,46 +110,10 @@ export class ClientSocket {
             this.sendBadRequest();
             return;
         }
-        /*
-        var peer = new Peer({ key: '46xjowy5zupx2yb9' });
-        var targetId = '4i1clfollahsemi';
-
-        peer.on('error', err => {
-            console.error(err);
-        });
-
-        peer.on('open', (id) => {
-            console.log('Opened: my id = ' + id);
-        });
-
-        peer.on('connection', (conn) => {
-            console.log('Connected: conn =', conn);
-
-            conn.on('data', (data: any) => {
-                console.log(data);
-            });
-        });
-
-        var conn = peer.connect(targetId);
-
-        conn.on('open', () => {
-            console.log('Opened: id = ' + conn.peer);
-
-            conn.send('HELLO');
-        });*/
 
         // WebRTC の設定を取得
         this.peerjsSettings = this.parsePeerjsSettings(this.request.uri);
 
-        /*
-        if (!this.peerjsSettings) {
-            this.sendBadRequest();
-            return;
-        }
-        */
-
-
-        //this.blockAndRedirect(this.targetUrl);
         this.startDownloading();
     }
 
