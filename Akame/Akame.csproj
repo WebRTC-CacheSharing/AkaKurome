@@ -57,7 +57,6 @@
     <TypeScriptCompile Include="app\js\peerjs-utility.ts" />
     <TypeScriptCompile Include="app\js\signaling-client.ts" />
     <TypeScriptCompile Include="app\js\utf8-converter.ts" />
-    <TypeScriptCompile Include="app\js\_background.ts" />
     <TypeScriptCompile Include="app\js\buffer-graph.ts" />
     <TypeScriptCompile Include="app\js\client-socket.ts" />
     <TypeScriptCompile Include="app\js\http-server.ts" />
