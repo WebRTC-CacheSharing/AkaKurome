@@ -21,7 +21,11 @@ export interface AppContentWindow extends Window {
     startApp(args: AppArgs): void;
 }
 
-var isAppStarted: boolean = false;
+/**
+ * アプリケーションが開始しているか否か
+ */
+var isAppStarted = false;
+
 var pollingTimerId: number;
 var httpServer: server.HttpServer;
 var socketsPrev: client.ClientSocket[] = [];
@@ -30,7 +34,7 @@ var currentSocketId: number;
 
 /**
  * アプリケーションを開始する
- *  バックグラウンドからの引数で開始する
+ * バックグラウンドからの引数で開始する
  */
 function startApp(args: AppArgs): void {
     if (!isAppStarted) {
@@ -51,8 +55,8 @@ function startApp(args: AppArgs): void {
 }
 
 /**
-    * 情報を更新する
-    */
+ * 情報を更新する
+ */
 function update(): void {
     console.log('::update');
 
@@ -85,8 +89,8 @@ function update(): void {
 }
 
 /**
-    * 選択しているソケットが変更された際の処理
-    */
+ * 選択しているソケットが変更された際の処理
+ */
 function changeSocket(): void {
     // Socket ID を取得
     var socketId = parseInt($(SOCKET_SELECT_SELECTOR).val(), 10);
@@ -112,8 +116,8 @@ function changeSocket(): void {
 }
 
 /**
-    * ソケット情報が更新されていないかポーリングを行う
-    */
+ * ソケット情報が更新されていないかポーリングを行う
+ */
 function socketsPolling(): void {
     var sockets = httpServer.getSockets();
         
@@ -122,7 +126,6 @@ function socketsPolling(): void {
         // clone しないと、同一インスタンスなため、配列の変更を検出できない
         socketsPrev = _.clone(sockets);
         update();
-        return;
     }
 }
 
