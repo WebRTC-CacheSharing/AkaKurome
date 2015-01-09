@@ -9,6 +9,8 @@ concat = require 'gulp-concat'
 jsonlint = require 'gulp-jsonlint'
 browserify = require 'gulp-browserify'
 less = require 'gulp-less'
+tsd = require 'gulp-tsd'
+bower = require 'gulp-bower'
 
 # Browserify
 gulp.task 'akame_browserify', ->
@@ -38,7 +40,6 @@ gulp.task 'json', ->
         .pipe cached('jsonlint')
         .pipe jsonlint()
         .pipe jsonlint.reporter()
-  
 
 gulp.task 'html', ->
     gulp.src ['Akame/**/*.html']
@@ -53,6 +54,15 @@ gulp.task 'bootstrap', ->
     gulp.src 'bower_components/bootstrap/dist/css/*.min.css'
         .pipe concat('bootstrap.css')
         .pipe gulp.dest('bin/Akame/app/css/')
+
+gulp.task 'tsd', (cb) ->
+    tsd
+        command: 'reinstall'
+        config: './tsd.json'
+    , cb
+
+gulp.task 'bower', ->
+    bower cmd: 'install'
 
 gulp.task 'watch', ->
     gulp.watch 'Akame/**/*.ts', ['akame_browserify']
