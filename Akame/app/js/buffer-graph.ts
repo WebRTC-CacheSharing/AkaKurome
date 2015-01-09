@@ -13,9 +13,14 @@ interface JQueryWindow extends Window {
 
 (<JQueryWindow>window).jQuery = $;
 
+// import で読み込むと、読み込んだモジュールに対して何らかの操作しないと、
+// 最適化で require が消えてしまう。
 declare var require: (name: string) => any;
 require('jcanvas');
 
+/**
+ * バッファを可視化したグラフのクラス
+ */
 export class BufferGraph {
     public static DRAW_TIMER_MS = 100;
     public static SENT_COLOR = '#8CDDFF';
@@ -27,18 +32,18 @@ export class BufferGraph {
     private width: number;
 
     /**
-        * 縦横の正方形の個数
-        */
+     * 縦横の正方形の個数
+     */
     private rectLength: number;
 
     /**
-        * 縦横の正方形の大きさ
-        */
+     * 縦横の正方形の大きさ
+     */
     private rectWidth: number;
 
     /**
-        * 描画用タイマー
-        */
+     * 描画用タイマー
+     */
     private drawTimerId: number;
 
     public constructor(private selector: string) {
@@ -48,8 +53,8 @@ export class BufferGraph {
     }
 
     /**
-        * 描画するバッファーを設定する
-        */
+     * 描画するバッファーを設定する
+     */
     public setBuffer(buffer:buffer.HttpBuffer): void {
         this.buffer = buffer;
         this.rectLength = this.computeRectLength(this.buffer.getBlockLength());
@@ -57,16 +62,16 @@ export class BufferGraph {
     }
 
     /**
-        * 描画するバッファーをクリア
-        */
+     * 描画するバッファーをクリア
+     */
     public clearBuffer(): void {
         this.buffer = null;
         this.canvas.clearCanvas();
     }
 
     /**
-        * 描画処理
-        */
+     * 描画処理
+     */
     private draw(): void {
         // バッファが存在しない場合
         if (!this.buffer) {
@@ -88,42 +93,42 @@ export class BufferGraph {
     }
 
     /**
-        * 描画する正方形の個数を求める
-        * n * n <= blockLength を満たす整数 n の中で、最も小さい値を返す
-        * 
-        * @param blockLength ブロックの総数
-        */
+     * 描画する正方形の個数を求める
+     * n * n <= blockLength を満たす整数 n の中で、最も小さい値を返す
+     * 
+     * @param blockLength ブロックの総数
+     */
     private computeRectLength(blockLength: number): number {
         for (var i = 1; i * i < blockLength; ++i) { }
         return i;
     }
 
     /**
-        * 描画する正方形の大きさを求める
-        */
+     * 描画する正方形の大きさを求める
+     */
     private computeRectWidth(rectLength: number): number {
         return Math.floor(this.width / rectLength);
     }
 
 
     /**
-        * 描画する正方形の X 座標を求める
-        */
+     * 描画する正方形の X 座標を求める
+     */
     private getRectX(blockNumber: number): number {
         return (blockNumber % this.rectLength) * this.rectWidth;
     }
 
     /**
-        * 描画する正方形の Y 座標を求める
-        */
+     * 描画する正方形の Y 座標を求める
+     */
     private getRectY(blockNumber: number): number {
         var length = (blockNumber - blockNumber % this.rectLength) / this.rectLength;
         return length * this.rectWidth;
     }
 
     /**
-        * 描画色を取得する
-        */
+     * 描画色を取得する
+     */
     private getColor(dataBlock: block.DataBlock): string {
         if (dataBlock.sent) {
             return BufferGraph.SENT_COLOR;
@@ -141,9 +146,9 @@ export class BufferGraph {
     }
 
     /**
-        * 右端のブロック補正を行った幅を取得する
-        * 各ブロック幅を均等にしていると、右端でずれるため、調整する
-        */
+     * 右端のブロック補正を行った幅を取得する
+     * 各ブロック幅を均等にしていると、右端でずれるため、調整する
+     */
     private getRectWidthFixLast(blockNumber: number): number {
         // 右端のブロック
         if ((blockNumber + 1) % this.rectLength == 0) {
@@ -152,5 +157,4 @@ export class BufferGraph {
 
         return this.rectWidth;
     }
-
 }
