@@ -10,12 +10,16 @@ WebRTC Cache Sharing System 用 Chrome 拡張機能
 - Visual Studio 2013
 - Google Chrome
 
-## 採用技術
+## 利用技術
 
 - Node.js (v0.10.x)
 - PeerJS (v0.3.14)
 - gulp
 - Browserify
+
+## 全体図
+
+![全体図](diagram.png)
 
 ## ライセンス
 MIT License<br />
