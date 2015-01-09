@@ -1,5 +1,10 @@
 ﻿/// <reference path="../../typings.d.ts" />
 
+// Desc   : ダウンロード状態を可視化するアプリケーション
+// License: MIT License
+// Author : pine613<https://github.com/pine613>
+// Copyright (C) 2014-2015 Pine Mizune.
+
 import _ = require('underscore');
 import $ = require('jquery');
 
