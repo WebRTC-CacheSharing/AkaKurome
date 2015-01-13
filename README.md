@@ -24,7 +24,7 @@ WebRTC Cache Sharing System 用 Chrome 拡張機能
 $ npm install
 $ npm run tsd
 $ npm run bower
-$ npm build
+$ npm run build
 ```
 
 ## 全体図
