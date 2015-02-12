@@ -67,6 +67,11 @@ export class PeerjsSignalingSocket {
     public close() {
         console.log('PeerjsSignalingSocket#close');
 
+        // ピア情報の取得が成功していない場合
+        if (!this.peerjsId) {
+            return;
+        }
+
         this.targetHashHelper(hash => {
             this.signalingSocket.sendDeletePeerId(this.peerjsId, hash);
         });
@@ -165,7 +170,7 @@ export class PeerjsSignalingSocket {
         myIdList.add(this.peerjsHost, this.peerjsPort, id);
 
         this.targetHashHelper(hash => {
-            this.signalingSocket.sendPeerId(hash, this.peerjsId, (err, peers) => {
+            this.signalingSocket.sendPeerId(this.peerjsId, hash, (err, peers) => {
                 if (err) {
                     console.error(err);
                     return;

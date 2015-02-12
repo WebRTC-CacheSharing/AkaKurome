@@ -30,7 +30,7 @@ export class SignalingClient {
         console.log(this.createUrl(peerId, path));
 
         $.ajax(
-            this.createUrl(peerId, path),
+            this.createUrl(path, peerId),
             {
                 type: 'POST'
             })
@@ -48,7 +48,7 @@ export class SignalingClient {
 
     public sendDeletePeerId(peerId: string, path: string, cb?: () => void): void {
         $.ajax(
-            this.createUrl(peerId, path),
+            this.createUrl(path, peerId),
             {
                 type: 'DELETE'
             })
